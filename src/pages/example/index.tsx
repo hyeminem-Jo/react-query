@@ -2,7 +2,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 
-export default function Example() {
+export default function Example() { // 공식문서 예제
   // 기존 데이터 패칭
   // const [isLoaging, setIsLoaging] = useState(false)
   // const [isError, setIsError] = useState(false)

@@ -4,16 +4,19 @@ import {
 import axios from "axios";
 import {useState} from "react";
 
-export default function useQueryExample() { // 기본 예제 (axios 사용)
+export default function useQuerySelectExample() { // select 예제
   const getQueryData = async () => {
     const response = await axios.get("https://api.github.com/repos/TanStack/query");
     return response.data
   };
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['postData'], // 쿼리명
+    queryKey: ['repoData'], // 쿼리명
     queryFn: getQueryData, // 쿼리함수 = 데이터를 가져오는 함수
-    // ...options ex) gcTime, staleTime, select, ...
+    select: (data) => {
+      const postTitles = data.map((post: Data) => post.title);
+      return postTitles;
+    },
   })
 
   if (isPending) return '로딩중...'
@@ -21,7 +24,9 @@ export default function useQueryExample() { // 기본 예제 (axios 사용)
 
   return (
     <div style={{height: '100dvh'}}>
-      <div>{JSON.stringify(data)}</div>
+      {data.map((postTitle: string, idx: number) => (
+        <div key={`${postTitle}-${idx}`}>{idx}: {postTitle}</div>
+      ))}
     </div>
   )
 }
