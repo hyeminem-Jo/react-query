@@ -7,9 +7,6 @@ import axios from "axios";
 
 export default function useMutationExample() {
   const queryClient = useQueryClient()
-  // const newPost = {
-  //
-  // }
 
   const getPostData = async () => {
     const response = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
