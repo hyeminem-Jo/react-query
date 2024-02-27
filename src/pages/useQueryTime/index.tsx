@@ -13,7 +13,7 @@ export default function useQueryExample() { // gcTime, staleTime 예제
     queryKey: ['postData'], // 쿼리명
     queryFn: getQueryData, // 쿼리함수 = 데이터를 가져오는 함수
     gcTime: 5 * 60 * 1000, // 5분 (기본값: 5분)
-    staleTime: 1 * 60 * 1000, // 1분 (기본값: 0초)
+    staleTime: 3000, // 1분 (기본값: 0초)
   })
 
   if (isPending) return '로딩중...'

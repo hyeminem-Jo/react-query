@@ -12,7 +12,7 @@ export default function useQueryExample() { // queryKey 예제
   };
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['postData', currentId], // 쿼리명
+    queryKey: ['postData'], // 쿼리명
     queryFn: () => getPostData(currentId), // 쿼리함수 = 데이터를 가져오는 함수
     // ...options
   })

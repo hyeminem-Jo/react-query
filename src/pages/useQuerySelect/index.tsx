@@ -6,7 +6,7 @@ import {useState} from "react";
 
 export default function useQuerySelectExample() { // select 예제
   const getQueryData = async () => {
-    const response = await axios.get("https://api.github.com/repos/TanStack/query");
+    const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
     return response.data
   };
 
@@ -14,7 +14,7 @@ export default function useQuerySelectExample() { // select 예제
     queryKey: ['repoData'], // 쿼리명
     queryFn: getQueryData, // 쿼리함수 = 데이터를 가져오는 함수
     select: (data) => {
-      const postTitles = data.map((post: Data) => post.title);
+      const postTitles = data?.map((post: Data) => post.title);
       return postTitles;
     },
   })
@@ -24,7 +24,7 @@ export default function useQuerySelectExample() { // select 예제
 
   return (
     <div style={{height: '100dvh'}}>
-      {data.map((postTitle: string, idx: number) => (
+      {data?.map((postTitle: string, idx: number) => (
         <div key={`${postTitle}-${idx}`}>{idx}: {postTitle}</div>
       ))}
     </div>
