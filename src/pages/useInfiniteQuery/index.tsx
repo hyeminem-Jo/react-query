@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import localFont from "next/dist/compiled/@next/font/dist/local";
+import axios from "axios";
 
 export default function InfiniteQueries() {
   // useInfiniteQuery의 queryFn의 매개변수는 `pageParam`이라는 프로퍼티를 가질 수 있음
@@ -16,7 +16,7 @@ export default function InfiniteQueries() {
     useInfiniteQuery({
       queryKey: ["postData"],
       queryFn: fetchPostData,
-      initialPageParam: 0,
+      initialPageParam: 1,
       getNextPageParam: (lastPage, allPages) => {
         console.log(2222)
         return allPages.length < 99 && allPages.length + 1;
@@ -26,14 +26,18 @@ export default function InfiniteQueries() {
 
   return (
     <div>
-      <div>{data?.pages}</div>
-      {data?.map((post) => (
-        <>
-          <h1>제목: {post.title}</h1>
-          <p>날짜: {post.body}</p>
-          <span>👀 userId: {post.userId}</span>{' '}
-        </>
+      {data?.pages[0].map((group, idx) => (
+        <div key={idx}>
+        <h1>{group.title}</h1>
+      </div>
       ))}
+      {/*{data?.map((post) => (*/}
+      {/*  <>*/}
+      {/*    <h1>제목: {post.title}</h1>*/}
+      {/*    <p>날짜: {post.body}</p>*/}
+      {/*    <span>👀 userId: {post.userId}</span>{' '}*/}
+      {/*  </>*/}
+      {/*))}*/}
       <div>
         <button disabled={!hasNextPage} onClick={() => fetchNextPage()}>
           LoadMore
