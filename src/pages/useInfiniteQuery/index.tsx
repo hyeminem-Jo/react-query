@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query'
 import {useEffect} from "react";
 
-export default function useInfiniteQueryExample222() {
+export default function useInfiniteQueryExample() {
   const { ref, inView } = useInView()
   // useInView 훅은 리액트 컴포넌트의 "inView" 상태를 모니터링해주는 훅
   // viewport 에 보여질 때를 체크할 요소에 ref 속성을 걸어주고,
@@ -66,7 +66,7 @@ export default function useInfiniteQueryExample222() {
       {status === 'pending' ? (
         <p>로딩중...</p>
       ) : status === 'error' ? (
-        <span>에러 발생: {error.message}</span>
+        <span>에러 발생: {error?.message}</span>
       ) : (
         <>
           <div>

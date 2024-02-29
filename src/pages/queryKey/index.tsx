@@ -4,7 +4,7 @@ import {
 import axios from "axios";
 import {useState} from "react";
 
-export default function useQueryExample() { // queryKey 예제
+export default function queryKeyExample() { // queryKey 예제
   const [currentId, setCurrentId] = useState(1) // currentId => currentPage 라 가정
 
   const currentIdHandler = () => {
